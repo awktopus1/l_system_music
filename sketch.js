@@ -1,35 +1,14 @@
 
 
-let rules = [
-    {
-        from: "A",
-        to: "C|A"
-    },
-    {
-        from: "B",
-        to: "DB|F"
-    },
-    {
-        from: "C",
-        to: "EG|C"
-    },
-    {
-        from: "D",
-        to: "FA|"
-    },
-    {
-        from: "E",
-        to: "GEB|D"
-    },
-    {
-        from: "F",
-        to: "AC|"
-    },
-    {
-        from: "G",
-        to: "B|GD"
-    },
-];
+let rules = {
+        "A": "C|A",
+        "B": "DB|F",
+        "C": "EG|C",
+        "D": "FA|",
+        "E": "GEB|D",
+        "F": "AC|",
+        "G": "B|GD"
+};
 
 let freqs = {
     C: 261.6256,
@@ -49,17 +28,10 @@ function generate() {
 
     for (let i = 0; i < sentence.length; i++) {
         let current = sentence.charAt(i);
-        let found = false;
 
-        for (let j = 0; j < rules.length; j++) {
-            if (current === rules[j].from) {
-                nextSentence += rules[j].to;
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
+        if (current in rules){
+            nextSentence += rules[current]
+        } else {
             nextSentence += current;
         }
     }
